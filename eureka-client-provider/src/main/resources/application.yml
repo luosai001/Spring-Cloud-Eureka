@@ -1,0 +1,12 @@
+server:
+  port: 8000
+spring:
+  application:
+    name: eureka-client-provider
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/  #eureka服务地址 用来服务发现
+  instance:
+    lease-renewal-interval-in-seconds: 3 #3秒钟一次心跳
+    lease-expiration-duration-in-seconds: 5 #5秒超时
