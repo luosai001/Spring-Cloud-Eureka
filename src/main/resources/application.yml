@@ -13,7 +13,7 @@ eureka:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
 
   server:
-    eviction-interval-timer-in-ms: 60000 #扫描时间间隔
+    eviction-interval-timer-in-ms: 60000 #清理时间间隔
 
 
 

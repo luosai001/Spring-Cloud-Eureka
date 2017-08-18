@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: zuul
+server:
+  port: 2000
+
+zuul:
+  ignoredPatterns: /**/admin/** #忽略路径含有admin的请求
+  sensitiveHeaders: Cookie,Set-Cookie,Authorization #对于外部消费者 忽律这些敏感头
+  #ignoredHeaders:      #忽略的头部
+  routes:
+    hello:
+      path: /hello/**
+      serviceId: eureka-client-consumer   #serviceId 在虚拟地址 ribbon 通过serviceId查找服务列表 这里重eureka中获取
+#      url: http://localhost:8001  #物理地址
+  prefix: /api #增加前缀
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    lease-renewal-interval-in-seconds: 3 #3秒钟一次心跳
+    lease-expiration-duration-in-seconds: 5 #5秒超时
+
