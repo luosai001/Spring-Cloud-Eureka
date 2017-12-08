@@ -14,10 +14,10 @@ eureka:
 
 provider:
   ribbon:
-    MaxAutoRetriesNextServer: 2
-    MaxAutoRetries: 0
-    ConnectTimeout: 250
-    ReadTimeout: 500
+    MaxAutoRetriesNextServer: 2 #不可用时，重试下一个服务器
+    MaxAutoRetries: 0    #不可用时重试当前访问实例的次数
+    ConnectTimeout: 250  #连接超时
+    ReadTimeout: 500     #读取超时
     OkToRetryOnAllOperations: true
 
 hystrix:
