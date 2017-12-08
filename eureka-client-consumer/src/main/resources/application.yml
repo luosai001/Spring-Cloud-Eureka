@@ -3,10 +3,31 @@ server:
 spring:
   application:
     name: eureka-client-consumer
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/  #eureka服务地址 用来服务发现
-  instance:
-    lease-renewal-interval-in-seconds: 3 #3秒钟一次心跳
-    lease-expiration-duration-in-seconds: 5 #5秒超时
+      defaultZone: http://localhost:8761/eureka/
+
+provider:
+  ribbon:
+    MaxAutoRetriesNextServer: 2
+    MaxAutoRetries: 0
+    ConnectTimeout: 250
+    ReadTimeout: 500
+    OkToRetryOnAllOperations: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+##璁块棶actuator 涓嶇敤瀹夊叏鏂瑰紡
+management:
+  security:
+    enabled: false

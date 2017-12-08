@@ -1,3 +1,4 @@
+
 spring:
   application:
     name: zuul
@@ -5,20 +6,42 @@ server:
   port: 2000
 
 zuul:
-  ignoredPatterns: /**/admin/** #ºöÂÔÂ·¾¶º¬ÓĞadminµÄÇëÇó
-  sensitiveHeaders: Cookie,Set-Cookie,Authorization #¶ÔÓÚÍâ²¿Ïû·ÑÕß ºöÂÉÕâĞ©Ãô¸ĞÍ·
-  #ignoredHeaders:      #ºöÂÔµÄÍ·²¿
+  ignoredPatterns: /**/admin/** #å¿½ç•¥è·¯å¾„å«æœ‰adminçš„è¯·æ±‚
+  sensitiveHeaders: Cookie,Set-Cookie,Authorization #å¯¹äºå¤–éƒ¨æ¶ˆè´¹è€… å¿½å¾‹è¿™äº›æ•æ„Ÿå¤´
+  #ignoredHeaders:      #å¿½ç•¥çš„å¤´éƒ¨
   routes:
     hello:
       path: /hello/**
-      serviceId: eureka-client-consumer   #serviceId ÔÚĞéÄâµØÖ· ribbon Í¨¹ıserviceId²éÕÒ·şÎñÁĞ±í ÕâÀïÖØeurekaÖĞ»ñÈ¡
-#      url: http://localhost:8001  #ÎïÀíµØÖ·
-  prefix: /api #Ôö¼ÓÇ°×º
+      serviceId: eureka-client-consumer   #serviceId åœ¨è™šæ‹Ÿåœ°å€ ribbon é€šè¿‡serviceIdæŸ¥æ‰¾æœåŠ¡åˆ—è¡¨ è¿™é‡Œé‡eurekaä¸­è·å–
+#      url: http://localhost:8001  #ç‰©ç†åœ°å€
+    r:
+      path: /**
+      url: forward:/
+#    r:
+#      path: /**
+#      url: /
+#  prefix: /api #å¢åŠ å‰ç¼€
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
   instance:
-    lease-renewal-interval-in-seconds: 3 #3ÃëÖÓÒ»´ÎĞÄÌø
-    lease-expiration-duration-in-seconds: 5 #5Ãë³¬Ê±
+    lease-renewal-interval-in-seconds: 3 #3ç§’é’Ÿä¸€æ¬¡å¿ƒè·³
+    lease-expiration-duration-in-seconds: 5 #5ç§’è¶…æ—¶
 
+##timeout config
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+##é‡è¯•
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1

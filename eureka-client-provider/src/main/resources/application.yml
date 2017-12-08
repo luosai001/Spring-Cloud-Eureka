@@ -1,3 +1,15 @@
+#server:
+#  port: 8000
+#spring:
+#  application:
+#    name: eureka-client-provider
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/  #eurekaæœåŠ¡åœ°å€ ç”¨æ¥æœåŠ¡å‘ç°
+#  instance:
+#    lease-renewal-interval-in-seconds: 3 #3ç§’é’Ÿä¸€æ¬¡å¿ƒè·³
+#    lease-expiration-duration-in-seconds: 5 #5ç§’è¶…æ—¶
 server:
   port: 8000
 spring:
@@ -6,7 +18,4 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/  #eureka·şÎñµØÖ· ÓÃÀ´·şÎñ·¢ÏÖ
-  instance:
-    lease-renewal-interval-in-seconds: 3 #3ÃëÖÓÒ»´ÎĞÄÌø
-    lease-expiration-duration-in-seconds: 5 #5Ãë³¬Ê±
+      defaultZone: http://localhost:8761/eureka/

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 @SpringBootApplication
 @EnableEurekaClient
 @RestController
@@ -21,9 +23,16 @@ public class EurekaClientConsumerApplication {
 	RestTemplate restTemplate(){
 		return new RestTemplate();
 	}
+
+	private AtomicInteger count = new AtomicInteger() ;
+	private AtomicInteger count2 = new AtomicInteger() ;
+
 	@RequestMapping("/hello")
 	public String hello(){
-		return  restTemplate.getForObject("http://eureka-client-provider/hello", String.class);
+		System.out.println("request:"+count2.getAndIncrement());
+		String str =  restTemplate.getForObject("http://eureka-client-provider/hello", String.class);
+		System.out.println(str+count.getAndIncrement());
+		return str ;
 	}
 	public static void main(String[] args) {
 		SpringApplication.run(EurekaClientConsumerApplication.class, args);
