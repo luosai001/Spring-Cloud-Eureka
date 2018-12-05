@@ -7,7 +7,7 @@ server:
 
 zuul:
   ignoredPatterns: /**/admin/** #忽略路径含有admin的请求
-  sensitiveHeaders: Cookie,Set-Cookie,Authorization #对于外部消费者 忽律这些敏感头
+  sensitiveHeaders: Cookie,Set-Cookie,Authorization #对于外部服务 忽律这些敏感头
   #ignoredHeaders:      #忽略的头部
   routes:
     hello:
@@ -44,4 +44,4 @@ ribbon:
   ReadTimeout: 60000
   ConnectTimeout: 60000
   MaxAutoRetries: 0
-  MaxAutoRetriesNextServer: 1
+#  MaxAutoRetriesNextServer: 1
